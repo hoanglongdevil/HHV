@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Footer HANG HIEU VIET</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+
+        .footer {
+            background-color: #ffffff;
+            color: #333333;
+            padding: 40px 20px;
+        }
+        
+        .footer-top {
+            display: flex;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+            flex-wrap: wrap;
+        }
+        
+        .footer-column {
+            flex-basis: 18%; /* Điều chỉnh để các cột có chiều rộng tương đối */
+            margin-bottom: 20px;
+        }
+        
+        .footer-column h4 {
+            font-size: 16px;
+            margin-bottom: 15px;
+            font-weight: bold;
+            color: #1a1a1a;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column ul li a {
+            text-decoration: none;
+            color: #555555;
+            font-size: 14px;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-column ul li a:hover {
+            color: #007bff;
+        }
+
+        .payment-methods, .shipping-units, .social-media, .app-downloads {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .icon-small img {
+            height: 25px;
+            object-fit: contain;
+        }
+
+        .icon-large img {
+            height: 35px;
+            object-fit: contain;
+        }
+
+        .app-downloads {
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .app-downloads .app-link {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border: 1px solid #ddd;
+            padding: 5px 10px;
+            border-radius: 6px;
+            text-decoration: none;
+            color: #333;
+            font-size: 14px;
+        }
+
+        .app-downloads .app-link img {
+            width: 20px;
+            height: 20px;
+        }
+
+        .social-media a {
+            font-size: 14px;
+            text-decoration: none;
+            color: #555;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 10px;
+            transition: color 0.3s ease;
+        }
+        
+        .social-media a:hover {
+            color: #007bff;
+        }
+
+        .social-media img {
+            height: 20px;
+        }
+
+        .g-b-container {
+            margin-top: 15px;
+        }
+        
+        .g-b-container img {
+            width: 150px;
+        }
+
+        .footer-divider {
+            border: 0;
+            height: 1px;
+            background-color: #e0e0e0;
+            margin: 40px auto;
+            max-width: 1200px;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            font-size: 14px;
+            color: #666666;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-bottom-info {
+            line-height: 1.6;
+        }
+
+        .footer-bottom-info span,
+        .footer-bottom-info a {
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            .footer-top {
+                flex-direction: column;
+            }
+            .footer-column {
+                flex-basis: 100%;
+                text-align: center;
+            }
+            .payment-methods, .shipping-units, .social-media, .app-downloads {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<footer class="footer">
+    <div class="footer-top">
+        <div class="footer-column">
+            <h4>VỀ HÀNG HIỆU VIỆT</h4>
+            <ul>
+                <li><a href="#">Giới thiệu công ty</a></li>
+                <li><a href="#">Câu hỏi thường gặp</a></li>
+                <li><a href="#">Chính sách bảo mật</a></li>
+            </ul>
+        </div>
+        
+        <div class="footer-column">
+            <h4>HỖ TRỢ KHÁCH HÀNG</h4>
+            <ul>
+                <li><a href="#">Liên hệ với Hàng Hiệu Việt</a></li>
+                <li><a href="#">Hướng dẫn chọn kích cỡ</a></li>
+                <li><a href="#">Chính sách bán hàng</a></li>
+            </ul>
+        </div>
+        
+        <div class="footer-column">
+            <h4>THANH TOÁN</h4>
+            <div class="payment-methods">
+                <span class="icon-small"><img src="https://via.placeholder.com/60x40/000000/ffffff?text=Visa" alt="Visa"></span>
+                <span class="icon-small"><img src="https://via.placeholder.com/60x40/000000/ffffff?text=Mastercard" alt="Mastercard"></span>
+                <span class="icon-small"><img src="https://via.placeholder.com/60x40/000000/ffffff?text=JCB" alt="JCB"></span>
+                <span class="icon-small"><img src="https://via.placeholder.com/60x40/000000/ffffff?text=ZaloPay" alt="ZaloPay"></span>
+                <span class="icon-small"><img src="https://via.placeholder.com/60x40/000000/ffffff?text=Momo" alt="Momo"></span>
+                <span class="icon-small"><img src="https://via.placeholder.com/60x40/000000/ffffff?text=VNPay" alt="VNPay"></span>
+            </div>
+            <h4 style="margin-top: 25px;">ĐƠN VỊ VẬN CHUYỂN</h4>
+            <div class="shipping-units">
+                <span class="icon-large"><img src="https://via.placeholder.com/80x40/000000/ffffff?text=Viettel" alt="Viettel Post"></span>
+                <span class="icon-large"><img src="https://via.placeholder.com/80x40/000000/ffffff?text=GHTK" alt="Giao Hàng Tiết Kiệm"></span>
+                <span class="icon-large"><img src="https://via.placeholder.com/80x40/000000/ffffff?text=Ninja" alt="Ninja Van"></span>
+                <span class="icon-large"><img src="https://via.placeholder.com/80x40/000000/ffffff?text=J&T" alt="J&T Express"></span>
+                <span class="icon-large"><img src="https://via.placeholder.com/80x40/000000/ffffff?text=GHN" alt="Giao Hàng Nhanh"></span>
+                <span class="icon-large"><img src="https://via.placeholder.com/80x40/000000/ffffff?text=Best" alt="Best Express"></span>
+            </div>
+        </div>
+        
+        <div class="footer-column">
+            <h4>THEO DÕI CHÚNG TÔI</h4>
+            <div class="social-media">
+                <a href="#"><img src="https://via.placeholder.com/20x20/000000/ffffff?text=FB" alt="Facebook"> Facebook</a>
+                <a href="#"><img src="https://via.placeholder.com/20x20/000000/ffffff?text=IG" alt="Instagram"> Instagram</a>
+                <a href="#"><img src="https://via.placeholder.com/20x20/000000/ffffff?text=YT" alt="Youtube"> Youtube</a>
+                <a href="#"><img src="https://via.placeholder.com/20x20/000000/ffffff?text=TT" alt="TikTok"> Tiktok</a>
+            </div>
+        </div>
+        
+        <div class="footer-column">
+            <h4>TẢI ỨNG DỤNG NGAY THÔI</h4>
+            <div class="app-downloads">
+                <img src="https://via.placeholder.com/150x150/000000/ffffff?text=QR+Code" alt="QR Code">
+                <a href="#" class="app-link">
+                    <img src="https://via.placeholder.com/20x20/000000/ffffff?text=App" alt="App Store">
+                    Tải về từ App Store
+                </a>
+                <a href="#" class="app-link">
+                    <img src="https://via.placeholder.com/20x20/000000/ffffff?text=Play" alt="Google Play">
+                    Tải về từ Google Play
+                </a>
+                <div class="g-b-container">
+                    <img src="http://googleusercontent.com/file_content/0" alt="Đã thông báo Bộ Công Thương">
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <hr class="footer-divider">
+    
+    <div class="footer-bottom">
+        <div class="footer-bottom-info">
+            <span>Công ty cổ phần Công nghệ và Thời trang T.M</span>
+            <span>Mã số DKKD: 0109972042 - Ngày cấp: 20/04/2022 - Nơi cấp: Sở Kế Hoạch và Đầu Tư Thành Phố Hà Nội</span>
+            <span>Địa chỉ: 66/31 Ngõ 135 Đội Cấn - Ba Đình - Hà Nội. Hotline: 082.567.89.83 Giờ làm việc: 8:30 - 19:00 tất cả các ngày trong tuần</span>
+        </div>
+        <p>Coppyright.2022 by HÀNG HIỆU VIỆT.</p>
+    </div>
+</footer>
+
+</body>
+</html>

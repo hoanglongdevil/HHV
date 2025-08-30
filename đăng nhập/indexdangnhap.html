@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng Nhập</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="form-container">
+            <h2>Đăng nhập</h2>
+            <form id="login-form">
+                <div class="input-group">
+                    <input type="text" id="username" placeholder="Số điện thoại hoặc Email *" required>
+                </div>
+                <div class="input-group">
+                    <input type="password" id="password" placeholder="Mật khẩu *" required>
+                </div>
+                <div class="remember-forgot">
+                    <label>
+                        <input type="checkbox" id="remember"> Duy trì đăng nhập
+                    </label>
+                    <a href="https://hanghieuviet.vn/check-phone" class="forgot-password">Quên mật khẩu?</a>
+                </div>
+                <div class="error-message" id="error-message" style="display: none;">
+                    Lỗi mã chủ sở hữu trang web sẽ thấy: Khóa trang web không hợp lệ
+                    <div class="recaptcha-logo">
+                        <img src="https://www.gstatic.com/recaptcha/api2/logo_48.png" alt="reCAPTCHA">
+                        <span>reCAPTCHA</span>
+                        <div class="privacy">
+                            <a href="#">Bảo mật</a> - <a href="#">Điều khoản</a>
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="submit-btn">Đăng Nhập</button>
+            </form>
+            <div class="account-action">
+                Chưa có tài khoản? <a href="G:\code\demo\HHV\đăng ký\indexdangky.html" class="register">Đăng ký ngay</a>
+            </div>
+        </div>
+
+        <div class="qr-container">
+            <h3>Hàng Hiệu Việt</h3>
+            <div class="qr-code-content">
+                <div class="qr-box">
+                    <div id="qrcode"></div>
+                </div>
+                <p class="qr-text">Quét QR để tham gia nhóm kiếm tiền cùng HHV</p>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+    <script src="login.js"></script>
+</body>
+</html>

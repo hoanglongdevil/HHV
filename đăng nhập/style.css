@@ -1,0 +1,237 @@
+/* Thêm CSS cho div chứa mã QR */
+.qr-box #qrcode {
+    padding: 10px;
+    background-color: white;
+}
+/* Xóa hoặc sửa đổi thuộc tính background-color và display của .qr-box p */
+.qr-box p {
+    display: none; /* Ẩn chữ "Mã QR" */
+}
+
+/* Các đoạn CSS khác giữ nguyên */
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f0f2f5;
+    margin: 0;
+}
+
+.container {
+    display: flex;
+    background-color: #fff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    overflow: hidden;
+    max-width: 900px;
+    width: 100%;
+}
+
+.form-container, .qr-container {
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+.form-container {
+    flex: 1;
+    min-width: 400px;
+    padding-right: 20px;
+}
+
+.form-container h2 {
+    font-size: 28px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 25px;
+}
+
+.input-group {
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 15px 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    background-color: #f0f2f5;
+    box-sizing: border-box;
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: #007bff;
+    background-color: #fff;
+}
+
+.remember-forgot {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+.remember-forgot label {
+    display: flex;
+    align-items: center;
+    color: #555;
+    cursor: pointer;
+}
+
+.remember-forgot input[type="checkbox"] {
+    margin-right: 5px;
+}
+
+.remember-forgot a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.remember-forgot a:hover {
+    text-decoration: underline;
+}
+
+.error-message {
+    font-size: 12px;
+    color: #e74c3c;
+    border: 1px solid #f2dede;
+    background-color: #fcfcfc;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: left;
+    margin-bottom: 15px;
+}
+
+.recaptcha-logo {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    font-weight: bold;
+    color: #777;
+}
+
+.recaptcha-logo img {
+    width: 25px;
+    height: 25px;
+    margin-right: 5px;
+}
+
+.privacy {
+    margin-left: auto;
+}
+
+.privacy a {
+    color: #777;
+    text-decoration: none;
+}
+
+.privacy a:hover {
+    text-decoration: underline;
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    background-color: #ffcc00;
+    color: #fff;
+    transition: background-color 0.3s;
+}
+
+.submit-btn:hover {
+    background-color: #e6b800;
+}
+
+.account-action {
+    margin-top: 25px;
+    font-size: 14px;
+    color: #666;
+}
+
+.account-action a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.account-action a:hover {
+    text-decoration: underline;
+}
+
+/* Phần QR code được chỉnh sửa để khớp với hình ảnh */
+.qr-container {
+    flex: 1;
+    background-color: #fff;
+    border-left: 1px solid #e0e0e0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.qr-container h3 {
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 0px;
+}
+
+.qr-code-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+}
+
+.qr-box {
+    width: 250px;
+    height: 250px;
+    background-color: white;
+    margin: 20px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+
+.qr-text {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.5;
+    max-width: 250px;
+    margin: 0;
+}
+
+
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        box-shadow: none;
+        border-radius: 0;
+    }
+
+    .form-container {
+        border-right: none;
+        border-bottom: 1px solid #e0e0e0;
+    }
+
+    .qr-container {
+        border-left: none;
+    }
+}

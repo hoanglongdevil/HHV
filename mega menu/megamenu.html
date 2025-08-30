@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mega Menu - Dữ liệu mới</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f5f7;
+            padding: 40px;
+        }
+
+        #mainContainer {
+            display: flex;
+            gap: 20px;
+            position: relative;
+        }
+
+        #megaMenuWrapper {
+            position: relative;
+        }
+        
+        #level2 {
+            display: flex;
+            background-color: #ffffff;
+            border: 1px solid #dfe1e6;
+            border-radius: 4px;
+            box-shadow: 0 4px 12px rgba(9, 30, 66, 0.15);
+            z-index: 100;
+            position: relative;
+            min-height: 500px;
+        }
+
+        .menu-column {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        #level2Container {
+            max-height: 500px;
+            overflow-y: auto;
+            min-width: 240px;
+        }
+        
+        .menu-item {
+            padding: 10px 16px;
+            white-space: nowrap;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+            font-size: 14px;
+            color: #42526E;
+        }
+        
+        .menu-item:hover {
+            background-color: #f0f8ff;
+            color: #0052cc;
+        }
+
+        .menu-item.active {
+            background-color: #e6f2ff;
+            font-weight: 500;
+            color: #0052cc;
+        }
+
+        /* Loại bỏ position: absolute để các cột menu nằm cạnh nhau */
+        #brand-panel {
+            padding: 16px;
+            width: 200px;
+            background-color: #fafbfc;
+            display: none;
+            flex-direction: column;
+            border-left: 1px solid #f0f2f5;
+        }
+
+        #brand-panel.show {
+            display: flex;
+        }
+        
+        #brand-panel h3 {
+            margin: 0 0 12px 0;
+            font-size: 16px;
+            color: #172B4D;
+            font-weight: 600;
+        }
+
+        #brand-image-column {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        #brand-image-column img {
+            width: 100%;
+            height: auto;
+            border-radius: 4px;
+        }
+
+        /* Loại bỏ position: absolute để các cột menu nằm cạnh nhau */
+        #level3 {
+            display: none;
+            width: 200px;
+            background-color: #ffffff;
+            border-left: 1px solid #f0f2f5;
+        }
+        
+        #level4 {
+            display: none;
+            width: 240px;
+            background-color: #ffffff;
+            border-left: 1px solid #f0f2f5;
+        }
+        
+        #level3.show, #level4.show {
+            display: flex;
+        }
+        
+        /* Banner Carousel Styles */
+        #bannerCarousel {
+            width: 600px;
+            height: 500px;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid #dfe1e6;
+            border-radius: 4px;
+            display: block;
+        }
+
+        .banner-slide {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+        
+        .banner-slide.active {
+            opacity: 1;
+        }
+        
+        .banner-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .banner-nav {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+        }
+        
+        .banner-dot {
+            width: 12px;
+            height: 12px;
+            background-color: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        .banner-dot.active {
+            background-color: #ffffff;
+        }
+
+        .banner-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            font-size: 24px;
+            padding: 10px;
+            z-index: 10;
+            line-height: 1;
+        }
+        .banner-arrow:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+        #prevBanner {
+            left: 10px;
+        }
+        #nextBanner {
+            right: 10px;
+        }
+
+        ::-webkit-scrollbar { width: 5px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: #ccc; border-radius: 2px; }
+    </style>
+</head>
+<body>
+
+<div id="mainContainer">
+    <div id="megaMenuWrapper">
+        <div id="level2">
+            <div id="level2Container" class="menu-column"></div>
+            <div id="level3" class="menu-column"></div>
+            <div id="level4" class="menu-column"></div>
+            <div id="brand-panel">
+                <h3>Brand</h3>
+                <div id="brand-image-column"></div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="bannerCarousel">
+        <div class="banner-slide active">
+            <img src="https://via.placeholder.com/600x500/007bff/ffffff?text=Banner+1" alt="Banner 1">
+        </div>
+        <div class="banner-slide">
+            <img src="https://via.placeholder.com/600x500/28a745/ffffff?text=Banner+2" alt="Banner 2">
+        </div>
+        <div class="banner-slide">
+            <img src="https://via.placeholder.com/600x500/dc3545/ffffff?text=Banner+3" alt="Banner 3">
+        </div>
+        <button id="prevBanner" class="banner-arrow">&#10094;</button>
+        <button id="nextBanner" class="banner-arrow">&#10095;</button>
+        <div class="banner-nav">
+            <div class="banner-dot active"></div>
+            <div class="banner-dot"></div>
+            <div class="banner-dot"></div>
+        </div>
+    </div>
+</div>
+
+<script>
+  // Dữ liệu bạn cung cấp, đã được thêm thuộc tính 'brandImages'
+  const menuData = [
+    {
+      name: "Thời trang Việt",
+      brandImages: [ "https://via.placeholder.com/180x80/0d6efd/ffffff?text=Brand+1", "https://via.placeholder.com/180x80/0d6efd/ffffff?text=Brand+2", "https://via.placeholder.com/180x80/0d6efd/ffffff?text=Brand+3", "https://via.placeholder.com/180x80/0d6efd/ffffff?text=Brand+4", "https://via.placeholder.com/180x80/0d6efd/ffffff?text=Brand+5", "https://via.placeholder.com/180x80/0d6efd/ffffff?text=Brand+6" ],
+      children: [
+        { name: "Thời trang Nam", children: ["Áo sơ mi, áo polo, áo thun", "Áo polo, Tshirt", "Quần âu, kaki, jeans, short" , "Áo khoác", "Giày dép da", " Vlazer, vest, Comlpe", "Sịp, Đùi", "Giày dép thể thao", "Túi, cặp, Ví da", "Phụ Kiện thời trang"] },
+        { name: "Thời trang Nữ", children: ["Váy liền, Đầm công sở", "Đầm dạo phố, Đầm dự tiệc", "Đầm maxi, Váy hai dây mùa hè", "Áo dài Việt", "Áo công sơ", "Quần culottes – quần suông", "Chân váy, Quần short nữ", "Đồ mặc nhà cao cấp", "Túi xách tay – túi đeo chéo", "Giày cao gót", "Giày búp bê – giày lười nữ", "Dép sandal nữ", "Ví nữ, phụ kiện thời trang"] },
+        { name: "Thời trang Trẻ em", children: ["Áo sơ mi, thun bé trai", "Quần các loại cho bé trai", "Áo khoác , áo gió bé trai", "Bộ đồ bé trai (set áo + quần)", "Váy đầm cho bé gái", "Áo thun, áo kiểu bé gái", "Chân váy, quần bé gái", "Áo khoác – cardigan bé gái", "Bộ đồ bé gái (set áo + váy/quần)"] },
+        { name: "Thời trang Thể thao", children: ["Giày thể thao nam – nữ", "Giày chạy bộ – giày cầu lông", "Dép thể thao – dép đi phòng tập", "Nón thể thao – nón lưỡi trai", "Vớ thể thao – khăn – băng đô", "Balo thể thao – túi đựng giày – túi gym"] },
+        { name: "Thời trang theo Mùa", children: ["Thời trang Mùa Hè", "Thời trang Mùa Đông", "Trang phục Lễ hội – Tết"] },
+        { name: "Thời trang tặng Bố", children: ["Áo sơ mi dài tay", "Áo polo", "Quần âu, quần âu vải", "Áo len cổ lọ", "Áo khoác vest", "Cà vạt", "Thắt lưng da", "Đồng hồ, Mũ len"] },
+        { name: "Thời trang tặng Mẹ", children: ["Váy liền", "Áo blouse", "Chân váy midi", "Áo len nhẹ", "Áo khoác dáng dài", "Khăn lụa, Khăn choàng", "Túi xách tay", "Trang sức (bông tai, vòng cổ)"] },
+        { name: "Trang phục dân tộc", children: ["Áo dài thiết kế cao cấp", "Áo tứ thân - Lễ hội", "Áo bà ba cao cấp - Miền Tây", "Váy yếm và Áo yếm thiết kế", "Khăn vấn và phụ kiện đầu truyền thống", "Nón lá thủ công - Làng nghề", "Trang phục dân tộc thiểu số - Dệt tay", "Giày vải thổ cẩm - Dệt thủ công", "Set quà tặng trang phục dân tộc - Bản giới hạn"] }
+      ],
+    },
+    { 
+      name: "Gia dụng & Đời sống Việt", 
+      brandImages: [ "https://via.placeholder.com/180x80/28a745/ffffff?text=Brand+G1", "https://via.placeholder.com/180x80/28a745/ffffff?text=Brand+G2", "https://via.placeholder.com/180x80/28a745/ffffff?text=Brand+G3", "https://via.placeholder.com/180x80/28a745/ffffff?text=Brand+G4", "https://via.placeholder.com/180x80/28a745/ffffff?text=Brand+G5", "https://via.placeholder.com/180x80/28a745/ffffff?text=Brand+G6" ],
+      children: [
+        { name: "Đồ dùng nhà bếp cao cấp", children: ["Nồi chảo", "Dụng cụ pha trà, cà phê", "Bình thủy tinh, bình giữ nhiệt"] },
+        { name: "Đồ nội thất nhỏ", children: ["Đèn trang trí", "Tranh treo tường", "Thảm trang trí"] },
+        { name: "Tiện ích sống hiện đại", children: ["Máy lọc không khí", "Máy xay, ép chậm", "Thiết bị cảm ứng, điều khiển thông minh"] }
+      ] 
+    },
+    { 
+      name: "Đặc sản vùng miền – Ẩm thực truyền thống", 
+      brandImages: [ "https://via.placeholder.com/180x80/dc3545/ffffff?text=Brand+D1", "https://via.placeholder.com/180x80/dc3545/ffffff?text=Brand+D2", "https://via.placeholder.com/180x80/dc3545/ffffff?text=Brand+D3", "https://via.placeholder.com/180x80/dc3545/ffffff?text=Brand+D4", "https://via.placeholder.com/180x80/dc3545/ffffff?text=Brand+D5", "https://via.placeholder.com/180x80/dc3545/ffffff?text=Brand+D6" ],
+      children: [
+        { name: "Đặc sản nước chấm – gia vị", children: ["Nước mắm truyền thống", "Tương ớt – mắm nêm thủ công", "Muối chấm – muối tôm"] },
+        { name: "Bánh mứt truyền thống", children: ["Bánh cốm – bánh chưng – bánh phu thê", "Mứt gừng – mứt dừa", "Bánh đậu xanh – bánh in"] },
+        { name: "Đặc sản vùng miền", children: ["Chè đặc sản vùng núi", "Mật ong rừng – sâm núi", "Trà thảo mộc đặc sản"] }
+      ] 
+    },
+    { 
+      name: "Thực phẩm hữu cơ & Sống xanh", 
+      brandImages: [ "https://via.placeholder.com/180x80/198754/ffffff?text=Brand+T1", "https://via.placeholder.com/180x80/198754/ffffff?text=Brand+T2", "https://via.placeholder.com/180x80/198754/ffffff?text=Brand+T3", "https://via.placeholder.com/180x80/198754/ffffff?text=Brand+T4", "https://via.placeholder.com/180x80/198754/ffffff?text=Brand+T5", "https://via.placeholder.com/180x80/198754/ffffff?text=Brand+T6" ],
+      children: [
+        { name: "Rau củ, ngũ cốc hữu cơ", children: ["Hạt điều – hạt mắc ca – hạt sen", "Gạo hữu cơ – gạo lứt", "Tinh bột nghệ – bột rau"] },
+        { name: "Đồ uống tốt cho sức khỏe", children: ["Nước detox – nước ép lạnh", "Trà hoa – trà thảo dược", "Giấm trái cây – mật ong"] },
+        { name: "Đồ ăn chay – ăn kiêng", children: ["Thực phẩm low-carb – keto", "Đồ ăn chay chế biến sẵn"] }
+      ] 
+    },
+    { 
+      name: "Mỹ phẩm – Chăm sóc cá nhân", 
+      brandImages: [ "https://via.placeholder.com/180x80/fd7e14/ffffff?text=Brand+M1", "https://via.placeholder.com/180x80/fd7e14/ffffff?text=Brand+M2", "https://via.placeholder.com/180x80/fd7e14/ffffff?text=Brand+M3", "https://via.placeholder.com/180x80/fd7e14/ffffff?text=Brand+M4", "https://via.placeholder.com/180x80/fd7e14/ffffff?text=Brand+M5", "https://via.placeholder.com/180x80/fd7e14/ffffff?text=Brand+M6" ],
+      children: [
+        { name: "Dưỡng da – làm sạch tự nhiên", children: ["Sữa rửa mặt – nước hoa hồng", "Mặt nạ – serum thảo dược", "Kem dưỡng ẩm – dưỡng trắng"] },
+        { name: "Dầu gội, chăm sóc tóc", children: ["Dầu gội bồ kết – thảo mộc", "Tinh dầu dưỡng tóc – serum"] },
+        { name: "Sản phẩm spa tại nhà", children: ["Muối tắm – xông hơi", "Tinh dầu – đá muối"] }
+      ] 
+    },
+    { 
+      name: "Quà tặng – Doanh nghiệp – Văn hoá", 
+      brandImages: [ "https://via.placeholder.com/180x80/6f42c1/ffffff?text=Brand+Q1", "https://via.placeholder.com/180x80/6f42c1/ffffff?text=Brand+Q2", "https://via.placeholder.com/180x80/6f42c1/ffffff?text=Brand+Q3", "https://via.placeholder.com/180x80/6f42c1/ffffff?text=Brand+Q4", "https://via.placeholder.com/180x80/6f42c1/ffffff?text=Brand+Q5", "https://via.placeholder.com/180x80/6f42c1/ffffff?text=Brand+Q6" ],
+      children: [
+        { name: "Quà Tết – Lễ tặng sang trọng", children: ["Giỏ quà đặc sản", "Hộp quà thảo dược", "Set quà trà – bánh – mứt"] },
+        { name: "Đồ lưu niệm văn hoá", children: ["Tranh – tượng gỗ", "Bộ thư pháp – sổ tay"] },
+        { name: "Quà doanh nghiệp cá nhân hoá", children: ["Quà khắc tên – in logo", "Set quà ký ức văn hoá"] }
+      ] 
+    },
+    { 
+      name: "Y học cổ truyền – Phục hồi sức khỏe", 
+      brandImages: [ "https://via.placeholder.com/180x80/d63384/ffffff?text=Brand+Y1", "https://via.placeholder.com/180x80/d63384/ffffff?text=Brand+Y2", "https://via.placeholder.com/180x80/d63384/ffffff?text=Brand+Y3", "https://via.placeholder.com/180x80/d63384/ffffff?text=Brand+Y4", "https://via.placeholder.com/180x80/d63384/ffffff?text=Brand+Y5", "https://via.placeholder.com/180x80/d63384/ffffff?text=Brand+Y6" ],
+      children: [
+        { name: "Thảo dược – thuốc Nam", children: ["Cao lá – cao xoa – cao dán", "Trà dược – ngâm rượu", "Bột thảo dược uống"] },
+        { name: "Phục hồi thể chất – xương khớp", children: ["Dụng cụ massage – đá nóng", "Đai lưng – chườm nóng thảo mộc", "Xông hơi – xông thảo dược"] }
+      ] 
+    },
+    { 
+      name: "Thủ công mỹ nghệ – Làng nghề", 
+      brandImages: [ "https://via.placeholder.com/180x80/757575/ffffff?text=Brand+TC1", "https://via.placeholder.com/180x80/757575/ffffff?text=Brand+TC2", "https://via.placeholder.com/180x80/757575/ffffff?text=Brand+TC3", "https://via.placeholder.com/180x80/757575/ffffff?text=Brand+TC4", "https://via.placeholder.com/180x80/757575/ffffff?text=Brand+TC5", "https://via.placeholder.com/180x80/757575/ffffff?text=Brand+TC6" ],
+      children: [
+        { name: "Gốm sứ – Mây tre – Sơn mài", children: ["Bình gốm – chén bát", "Giỏ tre – rổ tre", "Tranh sơn mài – hộp sơn mài"] },
+        { name: "Trang trí nghệ thuật", children: ["Tranh treo – tượng nhỏ", "Đèn ngủ – đèn bàn thủ công"] },
+        { name: "Đồ dùng hàng ngày mỹ nghệ", children: ["Cốc sứ – khay trà – hộp gỗ"] }
+      ] 
+    },
+    { 
+      name: "Dụng cụ & Thiết bị thể thao", 
+      brandImages: [ "https://via.placeholder.com/180x80/20c997/ffffff?text=Brand+TT1", "https://via.placeholder.com/180x80/20c997/ffffff?text=Brand+TT2", "https://via.placeholder.com/180x80/20c997/ffffff?text=Brand+TT3", "https://via.placeholder.com/180x80/20c997/ffffff?text=Brand+TT4", "https://via.placeholder.com/180x80/20c997/ffffff?text=Brand+TT5", "https://via.placeholder.com/180x80/20c997/ffffff?text=Brand+TT6" ],
+      children: [
+        { name: "Yoga – Thiền – Fitness tại nhà", children: ["Thảm yoga – gạch yoga", "Bóng tập – dây kháng lực", "Ghế thiền – gối ngồi"] },
+        { name: "Thể thao ngoài trời", children: ["Dụng cụ cầu lông – bóng bàn", "Dụng cụ đi bộ – trekking"] }
+      ] 
+    },
+    { 
+      name: "Sản phẩm handmade – Sáng tạo Việt", 
+      brandImages: [ "https://via.placeholder.com/180x80/0dcaf0/ffffff?text=Brand+HM1", "https://via.placeholder.com/180x80/0dcaf0/ffffff?text=Brand+HM2", "https://via.placeholder.com/180x80/0dcaf0/ffffff?text=Brand+HM3", "https://via.placeholder.com/180x80/0dcaf0/ffffff?text=Brand+HM4", "https://via.placeholder.com/180x80/0dcaf0/ffffff?text=Brand+HM5", "https://via.placeholder.com/180x80/0dcaf0/ffffff?text=Brand+HM6" ],
+      children: [
+        { name: "Đồ trang trí sáng tạo", children: ["Đèn giấy – tranh cắt giấy", "Bình hoa vải – phụ kiện decor"] },
+        { name: "Phụ kiện cá nhân handmade", children: ["Túi vải – ví da thủ công", "Trang sức làm tay – phụ kiện gỗ"] },
+        { name: "Đồ dùng sáng tạo", children: ["Sổ tay vẽ tay – bookmark – lịch đứng"] }
+      ] 
+    },
+    { 
+      name: "Đồ chơi – Quà tặng trẻ em", 
+      brandImages: [ "https://via.placeholder.com/180x80/ffc107/000000?text=Brand+DC1", "https://via.placeholder.com/180x80/ffc107/000000?text=Brand+DC2", "https://via.placeholder.com/180x80/ffc107/000000?text=Brand+DC3", "https://via.placeholder.com/180x80/ffc107/000000?text=Brand+DC4", "https://via.placeholder.com/180x80/ffc107/000000?text=Brand+DC5", "https://via.placeholder.com/180x80/ffc107/000000?text=Brand+DC6" ],
+      children: [
+        { name: "Đồ chơi an toàn Việt", children: ["Bộ đồ chơi gỗ – xếp hình", "Đồ chơi lắp ráp – đồ chơi trí tuệ"] },
+        { name: "Quà tặng sinh nhật, trung thu", children: ["Lồng đèn giấy – đồ thủ công", "Set vẽ – tô tượng – đồ chơi giáo dục"] }
+      ] 
+    },
+    { 
+      name: "Sản phẩm cho người Việt xa quê – Việt kiều", 
+      brandImages: [ "https://via.placeholder.com/180x80/adb5bd/ffffff?text=Brand+VK1", "https://via.placeholder.com/180x80/adb5bd/ffffff?text=Brand+VK2", "https://via.placeholder.com/180x80/adb5bd/ffffff?text=Brand+VK3", "https://via.placeholder.com/180x80/adb5bd/ffffff?text=Brand+VK4", "https://via.placeholder.com/180x80/adb5bd/ffffff?text=Brand+VK5", "https://via.placeholder.com/180x80/adb5bd/ffffff?text=Brand+VK6" ],
+      children: [
+        { name: "Đặc sản quê nhà tiện gửi đi xa", children: ["Đặc sản khô – đóng hộp", "Hộp quà truyền thống", "Thực phẩm dễ bảo quản – gửi xa"] },
+        { name: "Đồ lưu niệm mang bản sắc Việt", children: ["Tranh – tượng – đồ mỹ nghệ", "Quà tặng Tết – lễ truyền thống"] }
+      ] 
+    }
+  ];
+
+  const megaMenuWrapper = document.getElementById('megaMenuWrapper');
+  const level2Container = document.getElementById('level2Container');
+  const level3Container = document.getElementById('level3');
+  const level4Container = document.getElementById('level4');
+  const brandImageColumn = document.getElementById('brand-image-column');
+  const brandPanel = document.getElementById('brand-panel');
+  const bannerCarousel = document.getElementById('bannerCarousel');
+
+  const bannerSlides = document.querySelectorAll('#bannerCarousel .banner-slide');
+  const bannerDots = document.querySelectorAll('#bannerCarousel .banner-dot');
+  const prevBannerBtn = document.getElementById('prevBanner');
+  const nextBannerBtn = document.getElementById('nextBanner');
+  let currentBanner = 0;
+  let bannerInterval;
+
+  function setActive(container, activeElement) {
+      if (!container) return;
+      Array.from(container.children).forEach(child => child.classList.remove('active'));
+      if (activeElement) {
+          activeElement.classList.add('active');
+      }
+  }
+
+  function hideSubMenus() {
+      level3Container.classList.remove('show');
+      level4Container.classList.remove('show');
+      brandPanel.classList.remove('show');
+      setActive(level2Container, null);
+      bannerCarousel.style.display = 'block';
+  }
+
+  function renderLevel2() {
+    level2Container.innerHTML = '';
+    menuData.forEach((item, index) => {
+      const div = document.createElement('div');
+      div.className = 'menu-item';
+      div.textContent = item.name;
+      div.onmouseover = () => {
+        setActive(level2Container, div);
+        renderLevel3(index);
+      };
+      level2Container.appendChild(div);
+    });
+  }
+
+  function renderLevel3(index) {
+    level3Container.innerHTML = '';
+    level4Container.innerHTML = '';
+    brandImageColumn.innerHTML = '';
+    brandPanel.classList.remove('show');
+
+    const currentLevel2 = menuData[index];
+    if (!currentLevel2) {
+        hideSubMenus();
+        return;
+    }
+
+    // Ẩn banner khi menu con được hiển thị
+    bannerCarousel.style.display = 'none';
+
+    level3Container.classList.add('show');
+    level4Container.classList.remove('show');
+
+    const level3List = currentLevel2.children;
+    level3List.forEach((child, childIndex) => {
+      const div = document.createElement('div');
+      div.className = 'menu-item';
+      div.textContent = child.name;
+      div.onmouseover = () => {
+        setActive(level3Container, div);
+        renderLevel4(index, childIndex);
+      };
+      level3Container.appendChild(div);
+    });
+
+    if (level3List.length > 0 && level3Container.children.length > 0) {
+        renderLevel4(index, 0);
+        setActive(level3Container, level3Container.children[0]);
+    } else {
+        level4Container.innerHTML = '';
+    }
+  }
+
+  function renderLevel4(index2, index3) {
+    level4Container.innerHTML = '';
+    const level4List = menuData[index2]?.children[index3]?.children || [];
+    level4Container.classList.add('show');
+    brandPanel.classList.add('show');
+    
+    // Hiển thị Brand Images tương ứng
+    const images = menuData[index2].brandImages;
+    brandImageColumn.innerHTML = ''; // Xóa ảnh cũ
+    if (images && images.length > 0) {
+        images.forEach(imageUrl => {
+            const img = document.createElement('img');
+            img.src = imageUrl;
+            img.alt = "Brand Image";
+            brandImageColumn.appendChild(img);
+        });
+    }
+
+    level4List.forEach(name => {
+      const div = document.createElement('div');
+      div.className = 'menu-item';
+      div.textContent = name;
+      div.onclick = function() {
+        window.location.href = `/product-list?category=${encodeURIComponent(name)}`;
+      };
+      level4Container.appendChild(div);
+    });
+  }
+
+  // Banner Carousel Logic
+  function showBanner(index) {
+      bannerSlides.forEach((slide, i) => {
+          slide.classList.remove('active');
+          bannerDots[i].classList.remove('active');
+      });
+      bannerSlides[index].classList.add('active');
+      bannerDots[index].classList.add('active');
+  }
+
+  function nextBanner() {
+      currentBanner = (currentBanner + 1) % bannerSlides.length;
+      showBanner(currentBanner);
+  }
+  
+  function prevBanner() {
+      currentBanner = (currentBanner - 1 + bannerSlides.length) % bannerSlides.length;
+      showBanner(currentBanner);
+  }
+
+  function startAutoSlide() {
+      bannerInterval = setInterval(nextBanner, 3000);
+  }
+
+  function stopAutoSlide() {
+      clearInterval(bannerInterval);
+  }
+  
+  prevBannerBtn.addEventListener('click', () => {
+      stopAutoSlide();
+      prevBanner();
+      startAutoSlide();
+  });
+  
+  nextBannerBtn.addEventListener('click', () => {
+      stopAutoSlide();
+      nextBanner();
+      startAutoSlide();
+  });
+
+  bannerDots.forEach((dot, index) => {
+      dot.addEventListener('click', () => {
+          stopAutoSlide();
+          currentBanner = index;
+          showBanner(currentBanner);
+          startAutoSlide();
+      });
+  });
+
+  bannerCarousel.onmouseenter = stopAutoSlide;
+  bannerCarousel.onmouseleave = startAutoSlide;
+
+  // Thêm sự kiện để ẩn menu và hiện banner khi rời khỏi khu vực menu
+  megaMenuWrapper.onmouseleave = hideSubMenus;
+
+  // Khởi chạy menu và banner khi trang tải
+  renderLevel2();
+  startAutoSlide();
+</script>
+
+</body>
+</html>
