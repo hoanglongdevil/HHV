@@ -224,26 +224,28 @@ body {
     margin: 0 auto;
 }
 
-.brands-list {
-    display: flex;
-    gap: 15px;
-    flex-wrap: nowrap;
-    justify-content: flex-start;
-    transition: transform 0.5s ease-in-out;
+.brand-list {
+    display: grid;
+    /* Tự động tạo các cột có chiều rộng tối thiểu là 150px, linh hoạt theo không gian */
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 20px; /* Khoảng cách giữa các mục */
+    max-width: 1200px;
+    margin: 0 auto; /* Căn giữa danh sách */
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .brand-item {
-    flex-shrink: 0;
-    width: 95px;
-    background-color: #f0f2f5;
-    border: 1px solid var(--border-color);
-    border-radius: 5px;
-    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Căn giữa theo chiều ngang */
     text-align: center;
-    font-size: 1.2em;
-    font-weight: 500;
-    color: var(--primary-color);
-    white-space: nowrap;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 .brand-item:hover {
     transform: translateY(-5px); /* Hiệu ứng di chuyển lên khi di chuột */
@@ -1417,3 +1419,4 @@ body {
     vertical-align: middle;
 
 }
+
