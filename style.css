@@ -225,12 +225,12 @@ body {
 }
 
 .brand-list {
-    display: grid;
-    /* Tự động tạo các cột có chiều rộng tối thiểu là 150px, linh hoạt theo không gian */
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    display: flex; /* Bật Flexbox để các mục nằm ngang */
+    flex-wrap: wrap; /* Cho phép các mục xuống dòng khi không đủ chỗ */
+    justify-content: center; /* Căn giữa các mục theo chiều ngang */
     gap: 20px; /* Khoảng cách giữa các mục */
     max-width: 1200px;
-    margin: 0 auto; /* Căn giữa danh sách */
+    margin: 0 auto;
     padding: 20px;
     background-color: #fff;
     border-radius: 8px;
@@ -239,13 +239,14 @@ body {
 
 .brand-item {
     display: flex;
-    flex-direction: column;
-    align-items: center; /* Căn giữa theo chiều ngang */
+    flex-direction: column; /* Giữ hình ảnh và tên nằm trên một cột */
+    align-items: center; /* Căn giữa nội dung theo chiều ngang */
     text-align: center;
     padding: 15px;
     border: 1px solid #ddd;
     border-radius: 8px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    flex-basis: 150px; /* Chiều rộng cơ bản của mỗi mục */
 }
 .brand-item:hover {
     transform: translateY(-5px); /* Hiệu ứng di chuyển lên khi di chuột */
@@ -1419,4 +1420,5 @@ body {
     vertical-align: middle;
 
 }
+
 
