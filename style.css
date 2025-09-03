@@ -255,8 +255,8 @@ body {
 
 /* Kiểu dáng cho hình ảnh */
 .brand-item img {
-    width: 100px; /* Chiều rộng hình ảnh */
-    height: 100px; /* Chiều cao hình ảnh */
+    width: 60px; /* Chiều rộng hình ảnh */
+    height: 40px; /* Chiều cao hình ảnh */
     object-fit: contain; /* Đảm bảo hình ảnh vừa vặn mà không bị méo */
     margin-bottom: 10px;
 }
@@ -1420,5 +1420,6 @@ body {
     vertical-align: middle;
 
 }
+
 
 
