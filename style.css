@@ -225,13 +225,14 @@ body {
 }
 
 /* Bố cục Flexbox cho danh sách thương hiệu */
+/* Bố cục Flexbox cho danh sách thương hiệu */
 .brand-list {
-    display: flex; /* Bật Flexbox */
-    justify-content: space-around; /* Phân bố đều các item trong một hàng */
-    align-items: center; /* Căn giữa các item theo chiều dọc */
-    width: 100%; /* Đảm bảo danh sách chiếm toàn bộ chiều rộng có sẵn */
+    display: flex;
+    justify-content: space-between; /* Phân bố đều 8 item trên một hàng */
+    align-items: center;
+    max-width: 400px; /* Chiều rộng tối đa của container (8 x 40px + khoảng cách) */
     margin: 0 auto;
-    padding: 20px;
+    padding: 20px 0;
     background-color: #fff;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -243,8 +244,8 @@ body {
     flex-direction: column;
     align-items: center;
     text-align: center;
-    width: 40px; /* Chiều rộng cố định */
-    height: 60px; /* Chiều cao cố định */
+    width: 40px;
+    height: 60px;
 }
 
 /* Kiểu dáng cho hình ảnh */
@@ -254,7 +255,7 @@ body {
     object-fit: contain; /* Đảm bảo hình ảnh vừa vặn mà không bị méo */
 }
 
-/* Ẩn tên thương hiệu để chỉ hiển thị hình ảnh với kích thước nhỏ */
+/* Ẩn tên thương hiệu để chỉ hiển thị hình ảnh */
 .brand-name {
     display: none;
 }
@@ -1408,6 +1409,7 @@ body {
     vertical-align: middle;
 
 }
+
 
 
 
