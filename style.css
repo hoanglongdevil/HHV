@@ -245,7 +245,28 @@ body {
     color: var(--primary-color);
     white-space: nowrap;
 }
+.brand-item:hover {
+    transform: translateY(-5px); /* Hiệu ứng di chuyển lên khi di chuột */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
 
+/* Kiểu dáng cho hình ảnh */
+.brand-item img {
+    width: 100px; /* Chiều rộng hình ảnh */
+    height: 100px; /* Chiều cao hình ảnh */
+    object-fit: contain; /* Đảm bảo hình ảnh vừa vặn mà không bị méo */
+    margin-bottom: 10px;
+}
+
+/* Kiểu dáng cho tên thương hiệu */
+.brand-name {
+    font-size: 1.1em;
+    font-weight: 600;
+    color: #555;
+    white-space: nowrap; /* Ngăn tên bị xuống dòng */
+    overflow: hidden; /* Ẩn phần tên bị tràn */
+    text-overflow: ellipsis; /* Thêm dấu ba chấm nếu tên quá dài */
+}
 .carousel-arrow {
     position: absolute;
     top: 50%;
@@ -1394,4 +1415,5 @@ body {
     height: auto;
     max-width: 50px; /* Điều chỉnh kích thước chiều rộng tối đa của logo */
     vertical-align: middle;
+
 }
