@@ -224,41 +224,48 @@ body {
     margin: 0 auto;
 }
 
-/* Bố cục Flexbox cho danh sách thương hiệu */
-/* Bố cục Flexbox cho danh sách thương hiệu */
-.brand-list {
+.brands-list {
     display: flex;
-    justify-content: space-between; /* Phân bố đều 8 item trên một hàng */
+    justify-content: flex-start; /* Sắp xếp các item từ trái sang phải */
     align-items: center;
-    max-width: 400px; /* Chiều rộng tối đa của container (8 x 40px + khoảng cách) */
-    margin: 0 auto;
+    width: fit-content;
     padding: 20px 0;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.5s ease-in-out;
+    gap: 15px; /* Khoảng cách giữa các item */
 }
 
-/* Kiểu dáng cho mỗi mục thương hiệu */
 .brand-item {
+    flex-shrink: 0;
+    width: 95px;
+    background-color: #f0f2f5;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    padding: 15px;
+    text-align: center;
+    font-size: 1.2em;
+    font-weight: 500;
+    color: var(--primary-color);
+    white-space: nowrap;
     display: flex;
     flex-direction: column;
     align-items: center;
-    text-align: center;
-    width: 40px;
-    height: 60px;
+    width: 80px; /* Chiều rộng cố định cho mỗi logo */
+    height: 50px; /* Chiều cao cố định */
+    flex-shrink: 0; /* Ngăn các item bị co lại */
 }
-
-/* Kiểu dáng cho hình ảnh */
 .brand-item img {
     width: 100%;
     height: 100%;
-    object-fit: contain; /* Đảm bảo hình ảnh vừa vặn mà không bị méo */
+    object-fit: contain;
 }
 
 /* Ẩn tên thương hiệu để chỉ hiển thị hình ảnh */
 .brand-name {
-    display: none;
+    display: flex;
+    text-align: center;
+    font-size: 15px;
 }
+
 .carousel-arrow {
     position: absolute;
     top: 50%;
@@ -1094,7 +1101,7 @@ body {
 .flash-sale-product-card {
     flex: 1;
     min-width: 160px;
-    max-width: 220px;
+    max-width: 3000px;
     background: #fff;
     border: 1px solid #eee;
     border-radius: 10px; /* Giữ nguyên bo góc 10px cho từng thẻ sản phẩm */
@@ -1111,7 +1118,7 @@ body {
 
 .product-image {
     width: 150px;
-    height: 200px;
+    height: 300px;
     object-fit: cover;
     border-radius: 6px;
 }
@@ -1407,11 +1414,4 @@ body {
     height: auto;
     max-width: 50px; /* Điều chỉnh kích thước chiều rộng tối đa của logo */
     vertical-align: middle;
-
 }
-
-
-
-
-
-
